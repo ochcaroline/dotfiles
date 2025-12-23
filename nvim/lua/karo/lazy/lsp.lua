@@ -1,13 +1,3 @@
-vim.lsp.config.go = {
-	cmd = { "gopls" },
-	filetypes = { "go" },
-	root_markers = {
-		"go.mod",
-		".git",
-	},
-	settings = {},
-}
-
 return {
 	{
 		"mason-org/mason.nvim",
@@ -21,18 +11,20 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"bashls", -- also used for zsh
+				"bashls",
+				"helm_ls",
 				"html",
 				"cssls",
+				"jsonls",
 				"ts_ls",
-				"stylua", -- lua formatter
+				"stylua",
 				"lua_ls",
-				"gopls", -- Go LSP with formatting and diagnostics
-				"basedpyright", -- Python LSP with type checking
-				"ruff", -- python linter & formatter
-				"marksman", -- Markdown LSP
+				"gopls",
+				"basedpyright",
+				"ruff",
+				"marksman",
+				"vue_ls",
 			},
 		},
 	},
 }
--- vim: ts=2 sts=2 sw=2 et

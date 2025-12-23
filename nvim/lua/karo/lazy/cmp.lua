@@ -24,7 +24,7 @@ return {
 				["<Up>"] = { "select_prev", "fallback" },
 				["<Down>"] = { "select_next", "fallback" },
 				["<Tab>"] = { "accept", "fallback" },
-				["<S-Tab>"] = { "hide", "fallback" },
+				["<C-Tab>"] = { "hide", "fallback" },
 			},
 
 			appearance = {
@@ -50,4 +50,3 @@ return {
 		},
 	},
 }
--- vim: ts=2 sts=2 sw=2 et

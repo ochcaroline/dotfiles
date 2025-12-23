@@ -4,10 +4,6 @@ vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete Buffer" })
 
 vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 
-vim.keymap.set("i", "<c-space>", function()
-	vim.lsp.completion.get()
-end)
-
 vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
 vim.keymap.set("n", "dd", '"_dd', { noremap = true })
 
@@ -24,3 +20,16 @@ vim.keymap.set({ "n" }, "gi", vim.lsp.buf.implementation)
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set({ "n" }, "gf", vim.diagnostic.open_float)
+
+vim.keymap.set("n", "<leader>tr", function()
+	require("neotest").run.run()
+end)
+vim.keymap.set("n", "<leader>tt", function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end)
+vim.keymap.set("n", "<leader>to", function()
+	require("neotest").output_panel.toggle()
+end)
+vim.keymap.set("n", "<leader>ts", function()
+	require("neotest").summary.toggle()
+end)

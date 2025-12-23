@@ -4,27 +4,24 @@ local ensureInstalled = {
 		"javascript",
 		"typescript",
 		"go",
+		"gomod",
+		"gosum",
+		"gowork",
 		"lua",
 		"python",
 		"ruby", -- used by `Brewfile`
 		"sql",
 		"vim",
 		"vue",
-	},
-	dataFormats = {
 		"json",
 		"toml",
 		"xml", -- also used by .plist and .svg files, since they are basically xml
 		"yaml",
-	},
-	content = {
 		"css",
 		"html",
 		"helm",
 		"markdown",
 		"markdown_inline",
-	},
-	specialFiletypes = {
 		"diff",
 		"dockerfile",
 		"editorconfig",
@@ -35,18 +32,18 @@ local ensureInstalled = {
 		"gitignore",
 		"requirements", -- python's `requirements.txt`
 		"vimdoc", -- `:help` files
-	},
-	embeddedLangs = {
 		"jsdoc",
 		"luadoc",
 		"luap", -- lua patterns
 		"regex",
 		"bash", -- embedded in GitHub Actions, etc.
+		"powershell",
 	},
 }
 
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	lazy = false,
 	build = ":TSUpdate",
 	opts = {
@@ -55,7 +52,7 @@ return {
 	init = function()
 		-- auto-install parsers
 		if vim.fn.executable("tree-sitter") == 1 then
-			local parsersToInstall = vim.iter(vim.tbl_values(ensureInstalled)):flatten():totable()
+			local parsersToInstall = vim.iter(ensureInstalled)
 			vim.defer_fn(function()
 				require("nvim-treesitter").install(parsersToInstall)
 			end, 2000)
