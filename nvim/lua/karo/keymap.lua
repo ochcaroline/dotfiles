@@ -33,3 +33,6 @@ end)
 vim.keymap.set("n", "<leader>ts", function()
 	require("neotest").summary.toggle()
 end)
+
+-- I'm not using macro recording, so cleaning that one
+vim.keymap.set("n", "q", "", { noremap = true })
