@@ -1,7 +1,7 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		opts = { ensure_installed = { "goimports", "gofumpt" } },
+		opts = { ensure_installed = { "goimports", "gofumpt", "prettier" } },
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
@@ -10,20 +10,28 @@ return {
 			{ "neovim/nvim-lspconfig" },
 		},
 		opts = {
+			-- LSPs
 			ensure_installed = {
+				-- bash
 				"bashls",
-				"helm_ls",
+				-- web stuff
 				"html",
 				"cssls",
-				"jsonls",
 				"ts_ls",
+				"vue_ls",
+				-- lua
 				"stylua",
 				"lua_ls",
+				-- go
 				"gopls",
+				-- python
 				"basedpyright",
 				"ruff",
+				-- markdown
 				"marksman",
-				"vue_ls",
+				-- misc
+				"jsonls",
+				"helm_ls",
 			},
 		},
 	},
