@@ -46,10 +46,10 @@ vim.lsp.config.gopls = {
 
 vim.lsp.config.ts_ls = {
 	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
 	root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
 }
-vim.lsp.enable("ts_ls")
+vim.lsp.enable({ "ts_ls", "cssls" })
 
 vim.lsp.config.pylsp = {
 	cmd = { "basedpyright" },

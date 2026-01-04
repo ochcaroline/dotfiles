@@ -1,44 +1,44 @@
 local ensureInstalled = {
-	programmingLangs = {
-		"zsh",
-		"javascript",
-		"typescript",
-		"go",
-		"gomod",
-		"gosum",
-		"gowork",
-		"lua",
-		"python",
-		"ruby", -- used by `Brewfile`
-		"sql",
-		"vim",
-		"vue",
-		"json",
-		"toml",
-		"xml", -- also used by .plist and .svg files, since they are basically xml
-		"yaml",
-		"css",
-		"html",
-		"helm",
-		"markdown",
-		"markdown_inline",
-		"diff",
-		"dockerfile",
-		"editorconfig",
-		"git_config",
-		"git_rebase",
-		"gitattributes",
-		"gitcommit",
-		"gitignore",
-		"requirements", -- python's `requirements.txt`
-		"vimdoc", -- `:help` files
-		"jsdoc",
-		"luadoc",
-		"luap", -- lua patterns
-		"regex",
-		"bash", -- embedded in GitHub Actions, etc.
-		"powershell",
-	},
+	"zsh",
+	"javascript",
+	"typescript",
+	"tsx",
+	"jsx",
+	"go",
+	"gomod",
+	"gosum",
+	"gowork",
+	"lua",
+	"python",
+	"ruby", -- used by `Brewfile`
+	"sql",
+	"vim",
+	"vue",
+	"json",
+	"toml",
+	"xml", -- also used by .plist and .svg files, since they are basically xml
+	"yaml",
+	"css",
+	"html",
+	"helm",
+	"markdown",
+	"markdown_inline",
+	"diff",
+	"dockerfile",
+	"editorconfig",
+	"git_config",
+	"git_rebase",
+	"gitattributes",
+	"gitcommit",
+	"gitignore",
+	"requirements", -- python's `requirements.txt`
+	"vimdoc", -- `:help` files
+	"jsdoc",
+	"luadoc",
+	"luap", -- lua patterns
+	"regex",
+	"bash", -- embedded in GitHub Actions, etc.
+	"powershell",
 }
 
 return {
@@ -52,9 +52,8 @@ return {
 	init = function()
 		-- auto-install parsers
 		if vim.fn.executable("tree-sitter") == 1 then
-			local parsersToInstall = vim.iter(ensureInstalled)
 			vim.defer_fn(function()
-				require("nvim-treesitter").install(parsersToInstall)
+				require("nvim-treesitter").install(ensureInstalled)
 			end, 2000)
 		else
 			local msg = "`tree-sitter-cli` not found. Skipping auto-install of parsers."

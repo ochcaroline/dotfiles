@@ -31,7 +31,9 @@ return {
 				"marksman",
 				-- misc
 				"jsonls",
+				"yamlls",
 				"helm_ls",
+				"gh_actions_ls",
 			},
 		},
 	},
