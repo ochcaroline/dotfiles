@@ -1,3 +1,4 @@
 return {
-	{ "ochcaroline/needdis.nvim" },
+	-- { "ochcaroline/needdis.nvim" },
+	{ dir = "~/source/needdis.nvim" },
 }
