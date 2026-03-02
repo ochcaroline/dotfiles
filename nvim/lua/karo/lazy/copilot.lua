@@ -1,24 +1,26 @@
 return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = function()
 			local user = vim.env.USER or "User"
+			local model = "claude-sonnet-4.6"
 			user = user:sub(1, 1):upper() .. user:sub(2)
 			return {
 				auto_insert_mode = true,
 				headers = {
 					user = "  " .. user .. " ",
-					assistant = "  Copilot ",
+					assistant = "  " .. model,
 					tool = "󰊳  Tool ",
 				},
 				window = {
 					width = 0.4,
 				},
-				model = "gpt-4.1",
+				model = model,
 				resources = "buffer",
 			}
 		end,

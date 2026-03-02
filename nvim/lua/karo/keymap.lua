@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { noremap = true })
+vim.keymap.set("n", "<leader>fe", vim.cmd.Ex, { noremap = true })
 
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete Buffer" })
 
@@ -11,6 +11,7 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<leader>wd", ":close<CR>", { desc = "Close window" })
 
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
@@ -21,18 +22,19 @@ vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set({ "n" }, "gf", vim.diagnostic.open_float)
 
-vim.keymap.set("n", "<leader>tr", function()
-	require("neotest").run.run()
-end)
-vim.keymap.set("n", "<leader>tt", function()
-	require("neotest").run.run(vim.fn.expand("%"))
-end)
-vim.keymap.set("n", "<leader>to", function()
-	require("neotest").output_panel.toggle()
-end)
-vim.keymap.set("n", "<leader>ts", function()
-	require("neotest").summary.toggle()
-end)
+-- removed neotest from my config
+-- vim.keymap.set("n", "<leader>tr", function()
+-- 	require("neotest").run.run()
+-- end)
+-- vim.keymap.set("n", "<leader>tt", function()
+-- 	require("neotest").run.run(vim.fn.expand("%"))
+-- end)
+-- vim.keymap.set("n", "<leader>to", function()
+-- 	require("neotest").output_panel.toggle()
+-- end)
+-- vim.keymap.set("n", "<leader>ts", function()
+-- 	require("neotest").summary.toggle()
+-- end)
 
 -- I'm not using macro recording, so cleaning that one
 vim.keymap.set("n", "q", "", { noremap = true })

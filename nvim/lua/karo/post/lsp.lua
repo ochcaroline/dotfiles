@@ -1,3 +1,5 @@
+local utils = require("karo.utils")
+
 vim.diagnostic.config({
 	virtual_text = true,
 	--virtual_lines = true, -- a bit too invasive
@@ -44,13 +46,31 @@ vim.lsp.config.gopls = {
 	},
 }
 
-vim.lsp.config.ts_ls = {
-	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-	root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
+-- javascript, typescript and all that shit
+local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+local vue_plugin = {
+	name = "@vue/typescript-plugin",
+	location = utils.get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
+	languages = { "vue" },
+	configNamespace = "typescript",
+	enableForWorkspaceTypeScriptVersions = true,
 }
-vim.lsp.enable({ "ts_ls", "cssls" })
 
+local ts_ls_config = {
+	init_options = {
+		plugins = {
+			vue_plugin,
+		},
+	},
+	filetypes = tsserver_filetypes,
+}
+
+local vue_ls_config = {}
+vim.lsp.config("vue_ls", vue_ls_config)
+vim.lsp.config("ts_ls", ts_ls_config)
+vim.lsp.enable({ "vue_ls", "ts_ls", "cssls" })
+
+-- python
 vim.lsp.config.pylsp = {
 	cmd = { "basedpyright" },
 	filetypes = { "python" },
@@ -58,6 +78,13 @@ vim.lsp.config.pylsp = {
 }
 vim.lsp.enable("basedpyright")
 
+-- helm
+vim.lsp.config.helm_ls = {
+	filetypes = { "helm" },
+	root_markers = { "Chart.yaml", "values.yaml" },
+}
+
+-- and generic :D
 vim.lsp.inlay_hint.enable()
 
 vim.lsp.config("*", {

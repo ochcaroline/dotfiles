@@ -1,6 +1,7 @@
 return {
 	"nvim-mini/mini.nvim",
 	version = false,
+	event = "VimEnter",
 	config = function()
 		require("mini.ai").setup()
 		require("mini.comment").setup()

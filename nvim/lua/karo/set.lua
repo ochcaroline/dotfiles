@@ -8,6 +8,8 @@ vim.opt.signcolumn = "yes"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.o.scrolloff = 999
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4

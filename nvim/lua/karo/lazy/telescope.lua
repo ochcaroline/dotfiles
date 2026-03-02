@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-
+	event = "VimEnter",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"https://github.com/nvim-telescope/telescope-ui-select.nvim",
@@ -25,19 +25,14 @@ return {
 		telescope.load_extension("ui-select")
 
 		local builtin = require("telescope.builtin")
-		local function get_files()
-			local ok = pcall(builtin.git_files)
-
-			if not ok then
-				builtin.find_files()
-			end
-		end
-		vim.keymap.set("n", "<leader><leader>", get_files, { desc = "Get git files or all files if not git repo" })
+		vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Get git files or all files if not git repo" })
+		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Get all files in the dir" })
 		vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 		vim.keymap.set("n", "gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
-		vim.keymap.set("n", "gf", function()
+		vim.keymap.set("n", "gs", function()
 			builtin.lsp_document_symbols({ symbols = { "function", "class", "method", "struct" } })
 		end, {})
+		vim.keymap.set("n", "<leader>of", builtin.oldfiles, {})
 	end,
 }
