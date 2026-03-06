@@ -93,11 +93,5 @@ vim.lsp.config("*", {
 		-- default values for LSP
 		vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 		vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
-
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-			signs = true,
-			underline = true,
-			virtual_text = true,
-		})
 	end,
 })

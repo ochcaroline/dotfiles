@@ -15,26 +15,11 @@ vim.keymap.set("n", "<leader>wd", ":close<CR>", { desc = "Close window" })
 
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
-vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition)
-vim.keymap.set({ "n" }, "gr", vim.lsp.buf.references)
-vim.keymap.set({ "n" }, "gi", vim.lsp.buf.implementation)
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set({ "n" }, "gf", vim.diagnostic.open_float)
 
--- removed neotest from my config
--- vim.keymap.set("n", "<leader>tr", function()
--- 	require("neotest").run.run()
--- end)
--- vim.keymap.set("n", "<leader>tt", function()
--- 	require("neotest").run.run(vim.fn.expand("%"))
--- end)
--- vim.keymap.set("n", "<leader>to", function()
--- 	require("neotest").output_panel.toggle()
--- end)
--- vim.keymap.set("n", "<leader>ts", function()
--- 	require("neotest").summary.toggle()
--- end)
-
 -- I'm not using macro recording, so cleaning that one
 vim.keymap.set("n", "q", "", { noremap = true })
+
+vim.keymap.set("n", "<leader>ct", "<cmd>:CloakPreviewLine<CR>")

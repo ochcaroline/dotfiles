@@ -1,23 +1,23 @@
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 
 vim.opt.winborder = "rounded"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.o.scrolloff = 999
+vim.opt.scrolloff = 999
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.o.inccommand = "split"
+vim.opt.inccommand = "split"
 
-vim.o.confirm = true
+vim.opt.confirm = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 

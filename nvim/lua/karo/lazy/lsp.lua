@@ -1,7 +1,7 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		opts = { ensure_installed = { "goimports", "gofumpt", "prettier" } },
+		opts = { ensure_installed = { "goimports", "gofumpt", "prettier", "delve", "debugpy", "js-debug-adapter" } },
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",

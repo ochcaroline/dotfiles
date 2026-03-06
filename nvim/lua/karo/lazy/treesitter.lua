@@ -49,9 +49,10 @@ return {
 		},
 		branch = "main",
 		lazy = false,
+		priority = 100,
 		build = ":TSUpdate",
 		opts = {
-			install_dir = vim.fn.stdpath("data") .. "/treesitter",
+			install_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter",
 		},
 		init = function()
 			-- auto-install parsers
