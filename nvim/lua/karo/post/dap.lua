@@ -204,6 +204,73 @@ end
 
 load_project_dap_config()
 
+local function create_example_config()
+	local project_root = vim.fn.getcwd()
+	local nvim_dir = vim.fn.fnamemodify(project_root .. "/.nvim", ":p")
+	local config_file = nvim_dir .. "/dap.lua"
+
+	-- Check if .nvim directory exists, create if not
+	if vim.fn.isdirectory(nvim_dir) == 0 then
+		-- Properly pass the "p" option
+		local mkdir_success = vim.fn.mkdir(nvim_dir, "p")
+		if not mkdir_success then
+			vim.notify("Failed to create " .. nvim_dir, vim.log.levels.ERROR)
+			return -- Exit the function if directory creation fails
+		end
+	end
+
+	-- Example configuration content
+	local example_config_content = [[
+return {
+  go = {
+    {
+      type = "go",
+      name = "Launch file with args",
+      request = "launch",
+      program = "${file}",
+      dlvToolPath = vim.fn.exepath("dlv"),
+      args = { "--flag1", "value1", "--flag2", "value2" },
+    },
+  },
+  python = {
+    {
+      type = "python",
+      request = "launch",
+      name = "Launch file with args",
+      program = "${file}",
+      console = "integratedTerminal",
+      args = { "--flag1", "value1", "--flag2", "value2" },
+    },
+  },
+  javascript = {
+    {
+      type = "node2",
+      name = "Launch Program with args",
+      request = "launch",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+      runtimeExecutable = "node",
+      console = "integratedTerminal",
+      args = { "--flag1", "value1", "--flag2", "value2" },
+    },
+  }
+}
+]]
+
+	-- Write the example content to the file
+	local file, err = io.open(config_file, "w")
+	if not file then
+		vim.notify("Failed to create " .. config_file .. " " .. (err or ""), vim.log.levels.ERROR)
+		return -- Exit the function if file creation fails
+	end
+
+	file:write(example_config_content)
+	file:close()
+	vim.cmd("edit " .. config_file)
+	vim.notify("Created example " .. config_file, vim.log.levels.INFO)
+end
+
 -- Keymaps
 vim.keymap.set("n", "<F5>", function()
 	pick_debug_config()
@@ -250,3 +317,7 @@ end, { desc = "Terminate DAP session" })
 vim.keymap.set("n", "<leader>dl", function()
 	load_project_dap_config()
 end, { desc = "Reload project DAP config" })
+
+vim.keymap.set("n", "<leader>dec", function()
+	create_example_config()
+end, { desc = "Create example config" })
