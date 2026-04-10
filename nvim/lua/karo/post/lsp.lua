@@ -87,8 +87,24 @@ vim.lsp.config.helm_ls = {
 -- and generic :D
 vim.lsp.inlay_hint.enable()
 
+-- Clients whose formatting is handled by prettier via conform.
+-- Disabling here prevents conflicts with format-on-save.
+local prettier_lsp_clients = {
+	ts_ls = true,
+	vue_ls = true,
+	html = true,
+	cssls = true,
+	jsonls = true,
+	yamlls = true,
+}
+
 vim.lsp.config("*", {
 	on_attach = function(client, bufnr)
+		-- Disable formatting for LSPs that prettier covers
+		if prettier_lsp_clients[client.name] then
+			client.server_capabilities.documentFormattingProvider = false
+			client.server_capabilities.documentRangeFormattingProvider = false
+		end
 		-- overwrites omnifunc/tagfunc set by some Python plugins to the
 		-- default values for LSP
 		vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
