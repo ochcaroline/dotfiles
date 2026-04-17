@@ -13,7 +13,7 @@ return {
 			defaults = {
 				file_ignore_patterns = {
 					"node_modules",
-					".git",
+					"%.git/",
 					"venv",
 					".venv",
 					"go.mod",
@@ -25,8 +25,17 @@ return {
 		telescope.load_extension("ui-select")
 
 		local builtin = require("telescope.builtin")
+		local find_files_opts = {
+			search_dirs = {
+				vim.fn.getcwd(),
+				vim.fn.getcwd() .. "/.github",
+				vim.fn.getcwd() .. "/.nvim",
+			},
+		}
 		vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Get git files or all files if not git repo" })
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Get all files in the dir" })
+		vim.keymap.set("n", "<leader>ff", function()
+			builtin.find_files(find_files_opts)
+		end, { desc = "Get all files in the dir" })
 		vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 		vim.keymap.set("n", "gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "gd", builtin.lsp_definitions, {})

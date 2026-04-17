@@ -15,6 +15,16 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+-- 2-space indent for web file types (prettier handles final formatting)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "css", "html", "json", "yaml" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.softtabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end,
+})
+
 vim.opt.inccommand = "split"
 
 vim.opt.confirm = true
