@@ -83,14 +83,7 @@ alias n="nvim ."
 alias lb="liquibase"
 alias g="gitui"
 alias air='$(go env GOPATH)/bin/air'
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
+alias y=yazi
 
 export PATH="$HOME/.jenv/bin:$PATH"
 
@@ -105,15 +98,19 @@ fi
 export XDG_CONFIG_HOME=$HOME
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export SOURCE_PATH="$HOME/source"
+
+# https://github.com/ochcaroline/zsh-history-substring-search 
+HISTORY_SUBSTRING_SEARCH_EXCLUDE_PATTERN='export *'
 
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
-eval "$(jenv init -)"
 eval "$(thefuck --alias)"
+eval "$(mise activate zsh)"
 source <(kubectl completion zsh)
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source "$SOURCE_PATH/priv/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
 export GPG_TTY=$(tty)
 
