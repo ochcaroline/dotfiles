@@ -23,3 +23,7 @@ vim.keymap.set({ "n" }, "gf", vim.diagnostic.open_float)
 vim.keymap.set("n", "q", "", { noremap = true })
 
 vim.keymap.set("n", "<leader>ct", "<cmd>:CloakPreviewLine<CR>")
+
+vim.keymap.set("n", "<leader>ww", function()
+	vim.wo.wrap = not vim.wo.wrap
+end, { desc = "toggle wrap :)" })
