@@ -15,7 +15,7 @@ DOTFILES = [
     (HOME / ".skhdrc", DEST / ".skhdrc"),
     (HOME / "nvim", DEST / "nvim"),
     (HOME / "yazi", DEST / "yazi"),
-    (HOME / "starship.toml", DEST / ".config" / "starship.toml"),
+    (HOME / ".config" / "starship.toml", DEST / ".config" / "starship.toml"),
 ]
 
 

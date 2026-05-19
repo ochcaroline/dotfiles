@@ -4,12 +4,17 @@ return {
 		-- downloads a prebuilt binary or falls back to cargo build
 		require("fff.download").download_or_build_binary()
 	end,
-	opts = {
-		debug = {
-			enabled = true,
-			show_scores = true,
-		},
-	},
+	config = function()
+		require("fff").setup({
+			layout = {
+				height = 1,
+				width = 1,
+				preview_size = 0.5,
+				preview_position = "right",
+				flex = { size = 0, wrap = "right" },
+			},
+		})
+	end,
 	lazy = false, -- the plugin lazy-initialises itself
 	keys = {
 		{

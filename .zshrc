@@ -32,9 +32,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Starting the ssh agent
-eval $(ssh-agent) > /dev/null
-
 # Git aliases
 alias pull="git pull"
 alias push="git push"
@@ -77,17 +74,21 @@ alias dotvenv=". ./.venv/bin/activate"
 alias deptree="pipdeptree --python ./venv/bin/python"
 alias deptreereq="pipdeptree --python ./venv/bin/python | grep -E '^\w+' > requirements.txt"
 
+alias clochere="cloc --vcs=git --exclude-dir=node_modules,dist,build,coverage,cache --not-match-f='\.(lock|log)$' --timeout=0"
+
 # Misc aliases
 alias vim=nvim
 alias n="nvim ."
 alias lb="liquibase"
 alias g="gitui"
 alias air='$(go env GOPATH)/bin/air'
-alias y=yazi
+alias y="yazi"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 
 complete -F __start_kubectl k
+
+[ -f ~/.workrc.zsh ] && source ~/.workrc.zsh
 
 if [[ -f ~/.secrets ]]; then
   set -a
@@ -111,7 +112,10 @@ source <(kubectl completion zsh)
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source "$SOURCE_PATH/priv/zsh-history-substring-search/zsh-history-substring-search.zsh"
+source ~/git-cleanup-functions.zsh
 
 export GPG_TTY=$(tty)
 
 `test -z "$TMUX" && (tmux attach || tmux new-session)`
+
+DISABLE_AUTO_TITLE="false"
