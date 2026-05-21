@@ -18,10 +18,6 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
-vim.keymap.set({ "n" }, "gf", vim.diagnostic.open_float)
-vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set({ "n" }, "gs", vim.lsp.buf.document_symbol, { desc = "Go to symbols" })
-vim.keymap.set({ "n" }, "gr", vim.lsp.buf.references, { desc = "Go to references" })
 
 -- I'm not using macro recording, so cleaning that one
 vim.keymap.set("n", "q", "", { noremap = true })
