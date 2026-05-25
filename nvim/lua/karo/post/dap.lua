@@ -94,12 +94,19 @@ if dap_python_ok then
 end
 
 -- TypeScript / JavaScript (uses vscode-js-debug via js-debug-adapter from mason)
-local dap_vscode_ok, dap_vscode = pcall(require, "dap-vscode-js")
-if dap_vscode_ok then
-	dap_vscode.setup({
-		debugger_cmd = { "js-debug-adapter" },
-		adapters = { "pwa-node", "pwa-chrome", "node-terminal" },
-	})
+local js_debug_server = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
+if vim.fn.filereadable(js_debug_server) == 1 then
+	for _, type in ipairs({ "pwa-node", "pwa-chrome", "node-terminal" }) do
+		dap.adapters[type] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				args = { js_debug_server, "${port}" },
+			},
+		}
+	end
 	for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
 		dap.configurations[language] = {
 			{
@@ -273,7 +280,11 @@ end
 
 -- Keymaps
 vim.keymap.set("n", "<F5>", function()
-	pick_debug_config()
+	if dap.session() then
+		dap.continue()
+	else
+		pick_debug_config()
+	end
 end, { desc = "DAP Continue / Pick config" })
 
 vim.keymap.set("n", "<F10>", function()

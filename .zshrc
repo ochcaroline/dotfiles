@@ -112,7 +112,7 @@ source <(kubectl completion zsh)
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source "$SOURCE_PATH/priv/zsh-history-substring-search/zsh-history-substring-search.zsh"
-source ~/git-cleanup-functions.zsh
+source ~/source/git-cleanup-functions.zsh
 
 export GPG_TTY=$(tty)
 

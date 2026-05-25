@@ -8,3 +8,4 @@ cmd + alt - 7 : open /Applications/Docker.app/Contents/MacOS/Docker\ Desktop.app
 cmd + alt - 8 : open /Applications/DataGrip.app
 cmd + alt - 9 : open /Applications/Microsoft\ Teams.app
 cmd + alt - 0 : open /Applications/Microsoft\ Outlook.app
+cmd + alt - h : open /Applications/Helium.app

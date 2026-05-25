@@ -35,6 +35,7 @@ return {
 		vim.keymap.set("n", "<leader>ff", function()
 			builtin.find_files(find_files_opts)
 		end, { desc = "Get all files in the dir" })
+		vim.keymap.set("n", "gf", vim.diagnostic.open_float)
 		vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 		vim.keymap.set("n", "gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
@@ -42,5 +43,8 @@ return {
 			builtin.lsp_document_symbols({ symbols = { "function", "class", "method", "struct" } })
 		end, {})
 		vim.keymap.set("n", "<leader>of", builtin.oldfiles, {})
+		vim.keymap.set("n", "<leader>fb", function()
+			builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+		end, {})
 	end,
 }
