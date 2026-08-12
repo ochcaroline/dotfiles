@@ -8,7 +8,7 @@ return {
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = function()
 			local user = vim.env.USER or "User"
-			local model = "claude-sonnet-4.6"
+			local model = "gpt-5.6-luna"
 			user = user:sub(1, 1):upper() .. user:sub(2)
 			return {
 				auto_insert_mode = true,

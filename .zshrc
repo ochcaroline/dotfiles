@@ -22,7 +22,7 @@ bindkey '^[[B' history-substring-search-down
 
 # History
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
+HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 setopt appendhistory
 setopt sharehistory
@@ -119,3 +119,4 @@ export GPG_TTY=$(tty)
 `test -z "$TMUX" && (tmux attach || tmux new-session)`
 
 DISABLE_AUTO_TITLE="false"
+export PATH="/opt/homebrew/bin:$PATH"
