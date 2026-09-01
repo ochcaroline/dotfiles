@@ -17,6 +17,7 @@ DOTFILES = [
     (HOME / "yazi", DEST / "yazi"),
     (HOME / ".config" / "starship.toml", DEST / ".config" / "starship.toml"),
 ]
+BREWFILE = DEST / "Brewfile"
 
 
 def is_git_repo(path: Path) -> bool:
@@ -45,6 +46,29 @@ def copy(src: Path, dest: Path) -> None:
     print(f"  [ok]   {src} → {dest.relative_to(DEST)}")
 
 
+def backup_brewfile() -> None:
+    subprocess.run(
+        ["brew", "bundle", "dump", "--force", f"--file={BREWFILE}"],
+        check=True,
+    )
+    lines = BREWFILE.read_text().splitlines(keepends=True)
+    filtered = []
+    comments = []
+    for line in lines:
+        if line.lstrip().startswith("#"):
+            comments.append(line)
+            continue
+        if "homebrew-epex" in line.casefold() or "azu-rdit" in line.casefold():
+            comments.clear()
+            continue
+        filtered.extend(comments)
+        comments.clear()
+        filtered.append(line)
+    filtered.extend(comments)
+    BREWFILE.write_text("".join(filtered))
+    print("  [ok]   brew bundle → Brewfile")
+
+
 def main() -> None:
     if not is_git_repo(DEST):
         print(f"Error: '{DEST}' is not a git repository. Aborting.")
@@ -53,6 +77,7 @@ def main() -> None:
     print(f"Backing up dotfiles to: {DEST}\n")
     for src, dest in DOTFILES:
         copy(src, dest)
+    backup_brewfile()
 
     print("\nDone.")
 
