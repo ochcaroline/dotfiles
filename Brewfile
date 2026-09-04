@@ -199,6 +199,8 @@ cask "citrix-workspace"
 cask "copilot-cli"
 # Databases and SQL IDE
 cask "datagrip"
+# Kubernetes IDE
+cask "freelens"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Chromium-based web browser

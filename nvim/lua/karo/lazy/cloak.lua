@@ -4,7 +4,7 @@ return {
 		opts = {
 			patterns = {
 				{
-					file_pattern = { ".env*", "liquibase.properties" },
+					file_pattern = { ".env*", "liquibase.properties", ".secrets" },
 					cloak_pattern = { "=.+", ":.+" },
 					replace = nil,
 				},
